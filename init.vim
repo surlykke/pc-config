@@ -49,10 +49,11 @@ set nowrap
 set termguicolors
 set mouse=a
 set statusline+=%F\ col:\ %c
-
+set title
+set titlestring=nvim:\ %F
 " ------------ colorscheme ------------
 
-set background=light
+set background=dark
 let g:neosolarized_contrast = "normal"
 let g:neosolarized_visibility = "normal"
 let g:neosolarized_vertSplitBgTrans = 1
