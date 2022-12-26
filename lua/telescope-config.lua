@@ -14,4 +14,3 @@ vim.api.nvim_set_keymap('n', 'fs',  [[<Cmd>lua require('telescope.builtin').lsp_
 vim.api.nvim_set_keymap('n', 'fh',  [[<Cmd>lua require('telescope.builtin').resume()<CR>]], { noremap = true, silent = true })                        
 vim.api.nvim_set_keymap('n', 'fp',  [[<Cmd>lua require('telescope.builtin').pickers()<CR>]], { noremap = true, silent = true })                        
 
-

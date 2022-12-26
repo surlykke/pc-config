@@ -9,6 +9,11 @@ Plug 'tpope/vim-fugitive'
 " lsp
 Plug 'neovim/nvim-lspconfig'
 
+" Fejlvisning
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
+
+
 " completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -29,12 +34,18 @@ Plug 'nvim-lua/telescope.nvim'
 Plug 'overcache/NeoSolarized'  
 call plug#end()
 
+
 "lua require 'options-config'
+
 
 lua lsp_servers = { 'gopls' }
 lua require('nvim-cmp-config')
 lua require('lsp-config')
 lua require('telescope-config')
+lua require('trouble-config')
+lua require('help-popup')
+
+let g:lsp_diagnostics_float_cursor = 1
 
 " ----------- misc ------------------
 set nu
