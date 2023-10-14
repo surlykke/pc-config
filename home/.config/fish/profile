@@ -1,0 +1,6 @@
+set QT_SELECT 5
+set LANG da_DK.UTF-8
+set PATH $HOME/bin $HOME/.local/bin $PATH
+set TERMINAL terminal
+set EDITOR vim
+set PREFERRED_SELENIUM_BROWSER=Brave

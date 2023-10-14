@@ -1,0 +1,87 @@
+!
+!urxvt
+! Extensions
+URxvt*perl-lib: /home/${USER}/.local/share/urxvt
+URxvt*perl-ext-common:default,matcher,resize-font,vim-scrollback,-searchable-scrollback
+
+URxvt*buffered: true
+URxvt*cursorBlink: true
+URxvt*underlineColor: yellow
+URxvt*font:  xft:inconsolata:size=14:antialias=true
+URxvt*depth: 32
+URxvt*borderless: 1
+URxvt*scrollBar: false
+URxvt*loginShell: true
+URxvt*secondaryScroll:  true    # Enable Shift-PageUp/Down in screen
+URxvt*saveLines: 5000
+URxvt*termName: rxvt-unicode
+urxvt.urlLauncher: xdg-open
+urxvt.matcher.button: 1
+urxvt.geometry:400x400
+urxvt.underlineColor:#909090
+urxvt.matcher.launcher:xdg-open
+
+*background:            #002b36
+*foreground:            #839496
+*fadeColor:             #002b36
+*cursorColor:           #93a1a1
+*pointerColorBackground:#586e75
+*pointerColorForeground:#93a1a1
+
+!! black dark/light
+*color0:                #073642
+*color8:                #002b36
+
+!! red dark/light
+*color1:                #dc322f
+*color9:                #cb4b16
+
+!! green dark/light
+*color2:                #859900
+*color10:               #586e75
+
+!! yellow dark/light
+*color3:                #b58900
+*color11:               #657b83
+
+!! blue dark/light
+*color4:                #268bd2
+*color12:               #839496
+
+!! magenta dark/light
+*color5:                #d33682
+*color13:               #6c71c4
+
+!! cyan dark/light
+*color6:                #2aa198
+*color14:               #93a1a1
+
+!! white dark/light
+*color7:                #eee8d5
+*color15:               #fdf6e3
+
+! urxvt-vim-scrollback
+
+; configure alt-s as the keybinding to enter vim scrollback mode.
+urxvt.vim-scrollback: C-b
+
+; configure alt-p as the keybinding to paste mode.
+urxvt.vim-scrollback-paste: M-p
+
+; configure the background and foreground colors used for the status bar while
+; in scrollback mode.
+urxvt.vim-scrollback-bg: 16
+urxvt.vim-scrollback-fg: 10
+
+; configure vim-scrollback specific matchers
+urxvt.vim-scrollback.pattern.1: \\B(/\\S+?):(\\d+)(?=:|$)
+urxvt.vim-scrollback.launcher.1: gvim +$2 $1
+
+; configure the command used when opening urls. Note: uses the same
+; configuration as the url launcher script shipped with urxvt.
+URxvt*urlLauncher: xdg-open
+
+!clear all including scrollback
+URxvt.keysym.Control-l: command:\033c
+
+
