@@ -13,6 +13,6 @@ nohup urxvt -cd $HOME/projekter/payroll -T Log >/dev/null 2>/dev/null &
 nohup intellij-idea-ultimate nosplash  >/dev/null 2>/dev/null &
 
 nohup slack >/dev/null 2>/dev/null &
-nohup brave-browser --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo >/dev/null 2>/dev/null &
+nohup brave --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo >/dev/null 2>/dev/null &
 
 i3-msg '[title="^VPN$"] focus'
