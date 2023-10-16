@@ -16,12 +16,8 @@ sudo apt-get -y install $APT_PACKAGES
 
 
 echo "Installing snap packages"
-
-SNAP_PACKAGES="nvim brave"
-
-for snappackage in $SNAP_PACKAGES; do 
-	sudo snap install $snappackage
-done
+sudo snap install brave
+sudo snap install nvim --classic
 
 cd $(dirname $0)
 
