@@ -6,7 +6,7 @@ echo "Installing apt packages"
 APT_PACKAGES="\
  apt-file autorandr blueman curl feh fish flameshot git golang gopls htop i3\
  openfortivpn openjdk-17-jdk openjdk-17-source openssh-server pasystray pavucontrol playerctl\
- rxvt-unicode thefuck unclutter xclip xscreensaver\
+ rxvt-unicode sway swaylock thefuck unclutter xclip xdg-desktop-portal xdg-desktop-portal-wlr xscreensaver\
 "
 
 
