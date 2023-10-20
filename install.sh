@@ -16,7 +16,7 @@ sudo apt-get -y install $APT_PACKAGES
 
 
 echo "Installing snap packages"
-sudo snap install brave
+sudo snap install chromium 
 sudo snap install nvim --classic
 
 cd $(dirname $0)

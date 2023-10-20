@@ -175,7 +175,7 @@ bindsym $mod+less move container to output left
 exec --no-startup-id runRefude.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-exec --no-startup-id brave --no-startup-window
+exec --no-startup-id chromium --no-startup-window
 exec --no-startup-id xrdb -merge /home/$USER/.Xresources
 
 exec  --no-startup-id unclutter --timeout 2
@@ -192,7 +192,7 @@ for_window [class="java-util-concurrent-ForkJoinWorkerThread"] floating enable
 for_window [class="URxvt"] border pixel 1
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-bindsym $mod+Tab exec --no-startup-id brave http://localhost:7938/refude/html/launcher 
+bindsym $mod+Tab exec --no-startup-id chromium http://localhost:7938/refude/html/launcher 
 bindsym $mod+p exec swaylock -c 101010 
 
 focus_on_window_activation smart
