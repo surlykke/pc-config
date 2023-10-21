@@ -102,5 +102,3 @@ key_bindings:
   - { key: B,   mods: Control,         mode: ~Search, action: ToggleViMode }
   - { key: C,   mods: Control,         mode: Vi, action: ToggleViMode }
   - { key: Z,   mods: Control,         mode: Vi, action: ClearHistory }
-  - { key: Slash,                      mode: Vi|~Search, action: SearchForward }
-#  - { key: Slash,  mods: Shift,         mode: Vi|~Search, action: SearchBackward }
