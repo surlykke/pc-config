@@ -165,7 +165,7 @@ exec --no-startup-id pasystray
 exec --no-startup-id autorandr -c 
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-exec --no-startup-id chromium --no-startup-window
+exec --no-startup-id $BROWSER --no-startup-window
 
 exec xscreensaver -no-splash 
 exec unclutter --timeout 2 --no-startup-id
@@ -178,6 +178,6 @@ for_window [class="java-util-concurrent-ForkJoinWorkerThread"] floating enable
 for_window [class="urxvt"] border pixel 1
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-bindsym $mod+Tab exec --no-startup-id chromium http://localhost:7938/refude/html/launcher 
+bindsym $mod+Tab exec --no-startup-id $BROWSER http://localhost:7938/refude/html/launcher 
 bindsym $mod+p exec xscreensaver-command -lock 
 
