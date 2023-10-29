@@ -149,9 +149,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar
 bar {
 		position top
-		tray_output $MONITOR
 		font pango:DejaVu Sans Mono 14 
-		output $MONITOR 
 		status_command i3status
 }
 

@@ -21,16 +21,10 @@ if [[ -z "$BROWSER" ]]; then
 	fi
 fi	
 
-if [[ -z "$MONITOR" ]]; then
-	echo "Env var MONITOR not set" >&2  # FIXME Try to figure out
-	exit 1
-fi
-
-
 echo "Copying files under $HOME"
 
 # Set up for envsubst
-SHELL_FORMAT='$USER $MONITOR $BROWSER'
+SHELL_FORMAT='$USER $BROWSER'
 
 for dir in $(find home -type d -printf "%P\n"); do 
 	mkdir -p ${HOME}/$dir
