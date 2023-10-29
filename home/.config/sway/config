@@ -195,7 +195,7 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+Tab exec --no-startup-id $BROWSER http://localhost:7938/refude/html/launcher 
 bindsym $mod+p exec swaylock -c 101010 
 
-focus_on_window_activation smart
+focus_on_window_activation smart 
 
 input type:keyboard {
    xkb_layout "dk"

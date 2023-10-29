@@ -1,6 +1,10 @@
 #!/usr/bin/bash
 [[ "root" == "$(whoami)" ]] && { echo This script should not be run as root but as thy self; exit 1; }
 
+cd $(dirname $0)
+
+[[ -f "./env" ]] && . ./env
+
 # Try to figure out some env 
 if [[ -z "$BROWSER" ]]; then
 	for browser in chromium google-chrome brave-browser brave; do 
@@ -22,7 +26,6 @@ if [[ -z "$MONITOR" ]]; then
 	exit 1
 fi
 
-cd $(dirname $0)
 
 echo "Copying files under $HOME"
 
