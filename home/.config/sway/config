@@ -174,18 +174,19 @@ exec  --no-startup-id unclutter --timeout 2
 exec --no-startup-id kanshi
 exec --no-startup-id systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
 exec --no-startup-id dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
+exec --no-startup-id swayidle -w timeout 300 'swaylock -f -i /home/$USER/tapet/screenlocked.png' timeout 360 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 
 for_window [window_role="pop-up"] floating enable
 for_window [app_id="org.speedcrunch.speedcrunch"] floating enable
 for_window [title="PySol - Klondike"] floating enable
 for_window [title="^Microsoft Teams"] floating disable
 for_window [class="java-util-concurrent-ForkJoinWorkerThread"] floating enable
-for_window [class="URxvt"] border pixel 1
+for_window [app_id="Alacritty"] border pixel 1
+for_window [instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] border pixel 1
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym $mod+Tab exec --no-startup-id $BROWSER http://localhost:7938/refude/html/launcher 
-bindsym $mod+p exec swaylock -c 101010 
+bindsym $mod+p exec swaylock -i /home/$USER/tapet/screenlocked.png 
 
 focus_on_window_activation smart 
 
@@ -193,12 +194,10 @@ input type:keyboard {
    xkb_layout "dk"
 }
 
-input "2:7:SynPS/2_Synaptics_TouchPad" {
+input "$TOUCHPAD_IDENTIFIER" {
 	natural_scroll enabled
 	tap enabled
 }
-
-
 
 
 

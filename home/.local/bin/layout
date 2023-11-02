@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+outputs=($(swaymsg -p -t get_outputs | grep Output | cut -d ' ' -f 2))
+
+case ${#outputs[@]} in
+	"1") 
+		;;
+	"2") 
+			WindowArranger -wait 30 <<-EOC
+				${outputs[0]}: T['title=VPN' V['title=Work' 'title=Log']]
+				${outputs[1]}: H[H[T['instance=google-chrome'] T['instance="jetbrains-idea"']] V['title=Slack' 'title=Teams']]
+			EOC
+			swaymsg '[title=Slack] resize set width 1000 px'
+			swaymsg '[instance=jetbrains-idea] resize set width 2400 px'
+		;;
+	"3")
+			WindowArranger -wait 30 <<-EOC
+				eDP-1: T['title=VPN' V['title=Work' 'title=Log']]
+				DP-6: T['instance="jetbrains-idea"']
+				DP-7: H[T['instance="google-chrome"'] V['title=Slack' 'title=Teams']]
+			EOC
+
+			swaymsg '[instance=slack] resize set width 800px'
+
+		;;
+esac
+
+
+#!/usr/bin/env bash
+

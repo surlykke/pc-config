@@ -11,3 +11,4 @@ nohup intellij-idea-ultimate nosplash  >/dev/null 2>/dev/null &
 nohup slack --disable-gpu >/dev/null 2>/dev/null &
 nohup $BROWSER --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo >/dev/null 2>/dev/null &
 
+layout

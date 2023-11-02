@@ -24,7 +24,7 @@ fi
 echo "Copying files under $HOME"
 
 # Set up for envsubst
-SHELL_FORMAT='$USER $BROWSER'
+SHELL_FORMAT='$USER $BROWSER $TOUCHPAD_IDENTIFIER'
 
 for dir in $(find home -type d -printf "%P\n"); do 
 	mkdir -p ${HOME}/$dir
@@ -32,4 +32,5 @@ done
 
 for file in $(find home -type f -printf "%P\n"); do 
 	cat $(pwd)/home/$file | envsubst "'$SHELL_FORMAT'" > $HOME/$file
+	chmod --reference $(pwd)/home/$file $HOME/$file
 done
