@@ -24,7 +24,7 @@ fi
 echo "Copying files under $HOME"
 
 # Set up for envsubst
-SHELL_FORMAT='$USER $BROWSER $TOUCHPAD_IDENTIFIER'
+SHELL_FORMAT='$USER $BROWSER $BROWSER_DESKTOP $TOUCHPAD_IDENTIFIER'
 
 for dir in $(find home -type d -printf "%P\n"); do 
 	mkdir -p ${HOME}/$dir

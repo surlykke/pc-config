@@ -165,6 +165,7 @@ bindsym $mod+greater move container to output right
 bindsym $mod+less move container to output left
 
 exec runRefude.sh
+exec notifyclient
 exec nm-applet
 exec blueman-applet
 exec $BROWSER --no-startup-window
@@ -185,10 +186,12 @@ for_window [app_id="Alacritty"] border pixel 1
 for_window [instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] border pixel 1
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-bindsym $mod+Tab exec $BROWSER http://localhost:7938/refude/html/launcher 
+bindsym $mod+Tab exec refuc -X POST /refude/html/showlauncher 
 bindsym $mod+p exec swaylock -i /home/$USER/tapet/screenlocked.png 
 
 focus_on_window_activation smart 
+
+output * max_render_time off
 
 input type:keyboard {
    xkb_layout "dk"

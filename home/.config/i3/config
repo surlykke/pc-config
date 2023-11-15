@@ -176,6 +176,6 @@ for_window [class="java-util-concurrent-ForkJoinWorkerThread"] floating enable
 for_window [class="urxvt"] border pixel 1
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-bindsym $mod+Tab exec --no-startup-id $BROWSER http://localhost:7938/refude/html/launcher 
+bindsym $mod+Tab exec --no-startup-id refuc -X POST /refude/html/showlauncher
 bindsym $mod+p exec xscreensaver-command -lock 
 
