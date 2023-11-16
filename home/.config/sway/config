@@ -188,7 +188,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym $mod+Tab exec refuc -X POST /refude/html/showlauncher 
 bindsym $mod+p exec swaylock -i /home/$USER/tapet/screenlocked.png 
-
+bindsym $mod+o exec layout
 focus_on_window_activation smart 
 
 output * max_render_time off
