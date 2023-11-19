@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if ! ps -ef | grep $BROWSER | grep -v grep; then 
+	nohup $BROWSER http://localhost:7938/refude/html/launcher >/dev/null 2>/dev/null &
+else 
+	refuc -X POST /refude/html/showlauncher
+fi
+
