@@ -175,7 +175,7 @@ exec unclutter --timeout 2
 exec kanshi
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec swayidle -w timeout 300 'swaylock -f -i /home/$USER/tapet/screenlocked.png' timeout 360 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
+exec swayidle -w timeout 300 lockscreen.sh timeout 360 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 
 for_window [window_role="pop-up"] floating enable
 for_window [app_id="org.speedcrunch.speedcrunch"] floating enable
@@ -187,11 +187,12 @@ for_window [instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] border pixel 1
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym $mod+Tab exec showLauncher
-bindsym $mod+p exec swaylock -i /home/$USER/tapet/screenlocked.png 
+bindsym $mod+p exec lockscreen.sh
 bindsym $mod+o exec layout
 focus_on_window_activation smart 
 
 output * max_render_time off
+seat * hide_cursor when-typing enable
 
 input type:keyboard {
    xkb_layout "dk"

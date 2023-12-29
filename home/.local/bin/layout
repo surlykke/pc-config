@@ -10,7 +10,7 @@ case ${#outputs[@]} in
 	"2") 
 			WindowArranger -wait 30 <<-EOC
 				${outputs[0]}: T['title=VPN' V['title=Work' 'title=Log']]
-				${outputs[1]}: H[H[T['instance=google-chrome'] T['instance="jetbrains-idea"']] V['title=Slack' 'title=Teams']]
+				${outputs[1]}: H[H[T['instance=google-chrome'] T['instance="jetbrains-idea"']] V['title=Slack' 'title="Microsoft Teams classic"']]
 			EOC
 			swaymsg '[title=Slack] resize set width 1000 px'
 			swaymsg '[instance=jetbrains-idea] resize set width 2400 px'
@@ -19,7 +19,7 @@ case ${#outputs[@]} in
 			WindowArranger -wait 30 <<-EOC
 				${outputs[0]}: T['title=VPN' V['title=Work' 'title=Log']]
 				${outputs[1]}: T['instance="jetbrains-idea"']
-				${outputs[2]}: H[T['instance="google-chrome"'] V['title=Slack' 'title=Teams']]
+				${outputs[2]}: H[T['instance="google-chrome"'] V['title=Slack' 'title="Microsoft Teams classic"']]
 			EOC
 			swaymsg '[instance=slack] resize set width 900px'
 		;;
