@@ -1,10 +1,10 @@
 local helpTxt = [[      Keybindings
 
  fh           Show/hide this window
- gd           Goto definition
- gn           Goto next
- gp           Goto previous
- K            Show documentation for symbol under cursor
+ fd           Find definition
+ fn           Find next
+ fp           Find previous
+ fk           Show documentation for symbol under cursor
  fr           Find references
  fi           Find implementations
  fe           Find errors
