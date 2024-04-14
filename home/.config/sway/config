@@ -166,7 +166,7 @@ exec nm-applet
 exec blueman-applet
 exec $BROWSER --no-startup-window
 exec xrdb -merge /home/$USER/.Xresources
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/bin/lxpolkit
 
 exec kanshi
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
