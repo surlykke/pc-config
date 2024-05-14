@@ -12,7 +12,7 @@ local helpTxt = [[      Keybindings
  ff           Find files
  ft           Find text
  fs           Find symbol
- fp           Resume search
+ fa           Resume search
  tt           Show/hide error list
  <space>rn    Rename
  <space>f     Format buffer 

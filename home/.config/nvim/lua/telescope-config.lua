@@ -1,6 +1,11 @@
 require('telescope').setup{
+	pickers = {
+		git_files = {
+			show_untracked = true
+		}
+	}
     -- ...
-}
+}    -- ...
 
 
 vim.api.nvim_set_keymap('n', 'fd',  [[<Cmd>lua require('telescope.builtin').lsp_definitions()<CR>]], { noremap = true, silent = true })               -- goto definition
@@ -11,6 +16,6 @@ vim.api.nvim_set_keymap('n', 'fa',  [[<Cmd>lua require('telescope.builtin').lsp_
 vim.api.nvim_set_keymap('n', 'ff',  [[<Cmd>lua require('telescope.builtin').git_files()<CR>]], { noremap = true, silent = true })                     -- find files
 vim.api.nvim_set_keymap('n', 'ft',  [[<Cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })                     -- find text
 vim.api.nvim_set_keymap('n', 'fs',  [[<Cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]], { noremap = true, silent = true }) -- find symbol
-vim.api.nvim_set_keymap('n', 'fh',  [[<Cmd>lua require('telescope.builtin').resume()<CR>]], { noremap = true, silent = true })                        
+vim.api.nvim_set_keymap('n', 'fa',  [[<Cmd>lua require('telescope.builtin').resume()<CR>]], { noremap = true, silent = true })                        
 vim.api.nvim_set_keymap('n', 'fo',  [[<Cmd>lua require('telescope.builtin').pickers()<CR>]], { noremap = true, silent = true })                        
 
