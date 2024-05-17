@@ -29,4 +29,18 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
+# profile
+
+set QT_SELECT 5
+set LANG da_DK.UTF-8
+set PATH $HOME/.local/bin $PATH
+set TERMINAL terminal
+set EDITOR vim
+
 thefuck --alias | source
+
+if status --is-login; 
+	if not ps -ef | grep -q [s]way; 
+		exec sway ; 
+	end
+end
