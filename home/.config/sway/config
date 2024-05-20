@@ -179,6 +179,13 @@ for_window [title="PySol - Klondike"] floating enable
 for_window [title="^Microsoft Teams"] floating disable
 for_window [class="java-util-concurrent-ForkJoinWorkerThread"] floating enable
 for_window [app_id="Alacritty"] border pixel 1
+
+no_focus [class="Refude notifier"]
+for_window [class="Refude notifier"] border pixel 1 
+for_window [class="Refude notifier"] floating enable 
+for_window [class="Refude notifier"] move position -1000 -1000
+for_window [class="Refude notifier"] exec positionNotifyclientSway
+
 for_window [instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] border pixel 1
 for_window [title="pulsemixer"] floating enable
 for_window [app_id="kruler"] floating enable
