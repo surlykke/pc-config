@@ -37,8 +37,6 @@ set PATH $HOME/.local/bin $PATH
 set TERMINAL terminal
 set EDITOR vim
 
-thefuck --alias | source
-
 if status --is-login; 
 	if not ps -ef | grep -q [s]way; 
 		exec sway ; 

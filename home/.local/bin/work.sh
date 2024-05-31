@@ -9,6 +9,7 @@ nohup alacritty --working-directory $HOME/projekter/payroll -T Log >/dev/null 2>
 nohup intellij-idea-ultimate nosplash  >/dev/null 2>/dev/null &
 
 nohup slack --disable-gpu >/dev/null 2>/dev/null &
-nohup google-chrome --app=https://teams.microsoft.com/v2 >/dev/null 2>/dev/null &
+nohup  microsoft-edge --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo >/dev/null 2>/dev/null &
 
 layout
+swaymsg '[class="Slack"] resize set width 900px'
