@@ -31,11 +31,13 @@ set __fish_git_prompt_char_upstream_behind '-'
 
 # profile
 
-set QT_SELECT 5
-set LANG da_DK.UTF-8
-set PATH $HOME/.local/bin $PATH
-set TERMINAL terminal
-set EDITOR vim
+set -gx QT_SELECT 5
+set -gx LANG da_DK.UTF-8
+if not string match -q $PATH "/home/surlykke/.local/bin"; 
+	set -gx PATH $HOME/.local/bin $PATH
+end;
+set -gx TERMINAL alacritty 
+set -gx EDITOR vim
 
 if status --is-login; 
 	if not ps -ef | grep -q [s]way; 
