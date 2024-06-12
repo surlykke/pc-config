@@ -169,8 +169,10 @@ exec xrdb -merge /home/$USER/.Xresources
 exec --no-startup-id /usr/bin/lxpolkit
 
 exec kanshi
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 exec swayidle -w timeout 300 lockscreen.sh timeout 360 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
 
 for_window [window_role="pop-up"] floating enable
@@ -179,7 +181,7 @@ for_window [title="PySol - Klondike"] floating enable
 for_window [title="^Microsoft Teams"] floating disable
 for_window [class="java-util-concurrent-ForkJoinWorkerThread"] floating enable
 for_window [app_id="Alacritty"] border pixel 1
-
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 no_focus [class="Refude notifier"]
 for_window [class="Refude notifier"] border pixel 1 
 for_window [class="Refude notifier"] floating enable 

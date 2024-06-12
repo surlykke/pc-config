@@ -31,13 +31,19 @@ set __fish_git_prompt_char_upstream_behind '-'
 
 # profile
 
-set -gx QT_SELECT 5
 set -gx LANG da_DK.UTF-8
-if not string match -q $PATH "/home/surlykke/.local/bin"; 
+if not string match -q $PATH "$HOME/.local/bin"; 
 	set -gx PATH $HOME/.local/bin $PATH
 end;
 set -gx TERMINAL alacritty 
 set -gx EDITOR vim
+
+
+set -gx SDL_VIDEODRIVER wayland
+set -gx _JAVA_AWT_WM_NONREPARENTING 1
+set -gx QT_QPA_PLATFORM wayland
+set -gx XDG_CURRENT_DESKTOP sway
+set -gx XDG_SESSION_DESKTOP sway
 
 if status --is-login; 
 	if not ps -ef | grep -q [s]way; 
