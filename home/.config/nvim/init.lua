@@ -9,7 +9,7 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 vim.cmd("colorscheme evening")
---vim.g.have_nerd_font = true
+vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
@@ -32,12 +32,12 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.keymap.set("n", "<leader>p", function()
 	vim.diagnostic.jump({ count = -1, float = true })
-end, { desc = "Go to previous [D]iagnostic message" })
+end, { desc = "Previous dagnostic message" })
 vim.keymap.set("n", "<leader>n", function()
 	vim.diagnostic.jump({ count = 1, float = true })
-end, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+end, { desc = "Next diagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Error messages" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Quickfix list" })
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
@@ -110,13 +110,13 @@ require("lazy").setup({
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>h", builtin.help_tags, { desc = "[S]earch [H]elp" })
-			vim.keymap.set("n", "<leader>m", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-			vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "[S]earch [F]iles" })
-			vim.keymap.set("n", "<leader>s", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-			vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-			vim.keymap.set("n", "<leader>E", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-			vim.keymap.set("n", "<leader>c.", builtin.resume, { desc = "[S]earch [R]esume" })
+			vim.keymap.set("n", "<leader>h", builtin.help_tags, { desc = "Search help" })
+			vim.keymap.set("n", "<leader>m", builtin.keymaps, { desc = "Search keymaps" })
+			vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "Open file" })
+			vim.keymap.set("n", "<leader>s", builtin.builtin, { desc = "Search Telescope" })
+			vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Search" })
+			vim.keymap.set("n", "<leader>E", builtin.diagnostics, { desc = "Diagnostics" })
+			vim.keymap.set("n", "<leader>c.", builtin.resume, { desc = "Continue search" })
 
 			-- Shortcut for searching your Neovim configuration files
 			vim.keymap.set("n", "<leader>sn", function()
@@ -144,7 +144,7 @@ require("lazy").setup({
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
 					local map = function(keys, func, desc)
-						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
 					end
 
 					map("<leader>d", require("telescope.builtin").lsp_definitions, "Goto definition of current symbol")
@@ -153,16 +153,12 @@ require("lazy").setup({
 						require("telescope.builtin").lsp_type_definitions,
 						"goto definition of current symbols type"
 					)
-					map("<leader>u", require("telescope.builtin").lsp_references, "[s]earch [u]sages")
-					map("<leader>i", require("telescope.builtin").lsp_implementations, "search [I]mplementation")
+					map("<leader>u", require("telescope.builtin").lsp_references, "Usages")
+					map("<leader>i", require("telescope.builtin").lsp_implementations, "Implementation")
 					map("<leader>a", vim.lsp.buf.code_action, "actions")
-					map("<leader>ls", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-					map(
-						"<leader>s",
-						require("telescope.builtin").lsp_dynamic_workspace_symbols,
-						"[W]orkspace [S]ymbols"
-					)
-					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+					map("<leader>ls", require("telescope.builtin").lsp_document_symbols, "Local symbols")
+					map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
+					map("<leader>rn", vim.lsp.buf.rename, "Rename")
 					map("K", vim.lsp.buf.hover, "Hover Documentation")
 
 					-- Highlight references of word under cursor
@@ -197,7 +193,7 @@ require("lazy").setup({
 					if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
 						map("<leader>H", function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-						end, "[T]oggle Inlay [H]ints")
+						end, "Toggle inlay hints")
 					end
 
 					-- Organize imports on save
@@ -251,6 +247,11 @@ require("lazy").setup({
 							completion = {
 								callSnippet = "Replace",
 							},
+							diagnostics = {
+								-- Get the language server to recognize the `vim` global
+								globals = { "vim" },
+							},
+
 							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
 							-- diagnostics = { disable = { 'missing-fields' } },
 						},
@@ -294,7 +295,7 @@ require("lazy").setup({
 					require("conform").format({ async = true, lsp_fallback = true })
 				end,
 				mode = "",
-				desc = "[F]ormat buffer",
+				desc = "Format buffer",
 			},
 		},
 		opts = {
