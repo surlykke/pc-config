@@ -55,29 +55,72 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	{
+		"justinmk/molokai",
+		lazy = false,
+		priorty = 1000,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priorty = 1000,
+	},
+	{
 		"lifepillar/vim-solarized8",
 		lazy = false,
 		priorty = 1000,
-		config = function()
-			vim.cmd("colorscheme solarized8_high")
-		end,
 	},
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
-	},
+		config = function()
+			require("gitsigns").setup({
+				signs = {
+					add = { text = "┃" },
+					change = { text = "┃" },
+					delete = { text = "_" },
+					topdelete = { text = "‾" },
+					changedelete = { text = "~" },
+					untracked = { text = "┆" },
+				},
+				on_attach = function(bufnr)
+					local gitsigns = require("gitsigns")
+					local function map(mode, l, r, opts)
+						opts = opts or {}
+						opts.buffer = bufnr
+						vim.keymap.set(mode, l, r, opts)
+					end
 
+					-- Navigation
+					map("n", "<leader>gn", function()
+						if vim.wo.diff then
+							vim.cmd.normal({ "]c", bang = true })
+						else
+							gitsigns.nav_hunk("next")
+						end
+					end)
+
+					map("n", "<leader>gp", function()
+						if vim.wo.diff then
+							vim.cmd.normal({ "[c", bang = true })
+						else
+							gitsigns.nav_hunk("prev")
+						end
+					end)
+
+					map("n", "<leader>gd", gitsigns.preview_hunk)
+					map("n", "<leader>gD", function()
+						gitsigns.diffthis("~")
+					end)
+					map("n", "<leader>gb", gitsigns.toggle_current_line_blame)
+					map("n", "<leader>gB", function()
+						gitsigns.blame_line({ full = true })
+					end)
+				end,
+			})
+		end,
+	},
 	{ -- Useful plugin to show you pending keybinds.
 		"folke/which-key.nvim",
 		event = "VimEnter", -- Sets the loading event to 'VimEnter'
@@ -104,6 +147,14 @@ require("lazy").setup({
 		},
 		config = function()
 			require("telescope").setup({
+				defaults = {
+					layout_strategy = "vertical",
+					layout_config = {
+						vertical = { width = 0.95, mirror = true, prompt_position = "top" },
+						-- other layout configuration here
+					},
+					-- other defaults configuration here
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
@@ -120,8 +171,8 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>h", builtin.help_tags, { desc = "Search help" })
 			vim.keymap.set("n", "<leader>m", builtin.keymaps, { desc = "Search keymaps" })
 			vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "Open file" })
-			vim.keymap.set("n", "<leader>s", builtin.builtin, { desc = "Search Telescope" })
-			vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Search" })
+			vim.keymap.set("n", "<leader>T", builtin.builtin, { desc = "Search Telescope" })
+			vim.keymap.set("n", "<leader>f", builtin.live_grep, { desc = "Search" })
 			vim.keymap.set("n", "<leader>E", builtin.diagnostics, { desc = "Diagnostics" })
 			vim.keymap.set("n", "<leader>c.", builtin.resume, { desc = "Continue search" })
 
@@ -163,8 +214,8 @@ require("lazy").setup({
 					map("<leader>u", require("telescope.builtin").lsp_references, "Usages")
 					map("<leader>i", require("telescope.builtin").lsp_implementations, "Implementation")
 					map("<leader>a", vim.lsp.buf.code_action, "actions")
-					map("<leader>ls", require("telescope.builtin").lsp_document_symbols, "Local symbols")
-					map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
+					map("<leader>s", require("telescope.builtin").lsp_document_symbols, "Local symbols")
+					map("<leader>S", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
 					map("<leader>rn", vim.lsp.buf.rename, "Rename")
 					map("K", vim.lsp.buf.hover, "Hover Documentation")
 
@@ -297,7 +348,7 @@ require("lazy").setup({
 		lazy = false,
 		keys = {
 			{
-				"<leader>f",
+				"<leader>l",
 				function()
 					require("conform").format({ async = true, lsp_fallback = true })
 				end,
