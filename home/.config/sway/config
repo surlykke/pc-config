@@ -154,6 +154,7 @@ bar {
     }
 }
 
+workspace_layout tabbed
 
 focus_follows_mouse no
 

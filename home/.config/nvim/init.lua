@@ -1,14 +1,13 @@
 --[[
   Based on the brilliant https://github.com/nvim-lua/kickstart.nvim 
   
-  Adapted for my personal taste; mostly by removing stuff I don't use, rearranging keymapping.
+  Adapted for my personal taste; mostly by removing stuff I don't use, rearranging keymap.
 
   kickstart is under the MIT licence. See the file MIT for a copy of the licence.
 ]]
 
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
-vim.cmd("colorscheme evening")
 vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.mouse = "a"
@@ -55,6 +54,14 @@ vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
+	{
+		"lifepillar/vim-solarized8",
+		lazy = false,
+		priorty = 1000,
+		config = function()
+			vim.cmd("colorscheme solarized8_high")
+		end,
+	},
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 
