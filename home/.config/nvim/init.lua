@@ -68,6 +68,9 @@ require("lazy").setup({
 		"lifepillar/vim-solarized8",
 		lazy = false,
 		priorty = 1000,
+		config = function()
+			vim.cmd("colorscheme solarized8_high")
+		end,
 	},
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
