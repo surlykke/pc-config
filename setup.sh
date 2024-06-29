@@ -9,7 +9,7 @@ APT_PACKAGES="\
  rxvt-unicode sway swaylock swayidle unclutter xclip xdg-desktop-portal xdg-desktop-portal-wlr xscreensaver\
  lxpolkit lxappearance \
  bridge-utils cpu-checker libvirt-clients libvirt-daemon libvirt-daemon-system virtinst virt-manager qemu-system qemu-kvm\
- firewall-config firewalld clamav-freshclam clamav-daemon unattended-upgrades
+ firewall-config firewalld clamav-freshclam clamav-daemon unattended-upgrades net-tools
 "
 
 
