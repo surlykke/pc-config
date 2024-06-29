@@ -4,27 +4,10 @@
 cd $(dirname $0)
 
 [[ -f "./env" ]] && . ./env
-
-# Try to figure out some env 
-if [[ -z "$BROWSER" ]]; then
-	for browser in chromium google-chrome brave-browser brave; do 
-		if type $browser >/dev/null 2>/dev/null; then
-			export BROWSER=$browser
-			break
-		fi
-	done
-	
-
-	if [[ -z "$BROWSER" ]]; then
-		echo "Env var BROWSER not set and no suitable browser found in path" >&2
-		exit 1
-	fi
-fi	
-
 echo "Copying files under $HOME"
 
 # Set up for envsubst
-SHELL_FORMAT='$USER $BROWSER $BROWSER_DESKTOP $TOUCHPAD_IDENTIFIER $DEFAULT_MONITOR'
+SHELL_FORMAT='$USER $TOUCHPAD $DEFAULT_MONITOR $SCREEN_LOCK_CMD'
 
 for dir in $(find home -type d -printf "%P\n"); do 
 	mkdir -p ${HOME}/$dir

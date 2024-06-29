@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if ! ps -ef | grep $BROWSER | grep -v grep; then 
-	nohup $BROWSER http://localhost:7938/desktop >/dev/null 2>/dev/null &
+if ! ps -ef | grep google-chrome | grep -v grep; then 
+	nohup google-chrome http://localhost:7938/desktop >/dev/null 2>/dev/null &
 else 
 	refuc -X POST /desktop/show
 fi

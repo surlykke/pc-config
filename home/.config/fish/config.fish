@@ -37,7 +37,7 @@ if not string match -q $PATH "$HOME/.local/bin";
 end;
 set -gx TERMINAL alacritty 
 set -gx EDITOR vim
-
+set -gx DEFAULT_MONITOR $DEFAULT_MONITOR
 
 set -gx SDL_VIDEODRIVER wayland
 set -gx _JAVA_AWT_WM_NONREPARENTING 1

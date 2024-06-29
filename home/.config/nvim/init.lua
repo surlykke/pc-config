@@ -5,7 +5,7 @@
 
   kickstart is under the MIT licence. See the file MIT for a copy of the licence.
 ]]
-
+vim.cmd("colorscheme mydefault")
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 vim.g.have_nerd_font = true
@@ -55,6 +55,12 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	{
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("project_nvim").setup({})
+		end,
+	},
+	{
 		"justinmk/molokai",
 		lazy = false,
 		priorty = 1000,
@@ -69,7 +75,7 @@ require("lazy").setup({
 		lazy = false,
 		priorty = 1000,
 		config = function()
-			vim.cmd("colorscheme solarized8_high")
+			--vim.cmd("colorscheme solarized8_high")
 		end,
 	},
 	-- "gc" to comment visual regions/lines
@@ -450,11 +456,11 @@ require("lazy").setup({
 					-- Accept ([y]es) the completion.
 					--  This will auto-import if your LSP supports it.
 					--  This will expand snippets if the LSP sent a snippet.
-					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					--["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
 					-- If you prefer more traditional completion keymaps,
 					-- you can uncomment the following lines
-					--['<CR>'] = cmp.mapping.confirm { select = true },
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					--['<Tab>'] = cmp.mapping.select_next_item(),
 					--['<S-Tab>'] = cmp.mapping.select_prev_item(),
 

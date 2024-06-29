@@ -1,6 +1,6 @@
 [Default Applications]
-text/html=$BROWSER_DESKTOP
-x-scheme-handler/http=$BROWSER_DESKTOP
-x-scheme-handler/https=$BROWSER_DESKTOP
-x-scheme-handler/about=$BROWSER_DESKTOP
-x-scheme-handler/unknown=$BROWSER_DESKTOP
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
