@@ -206,7 +206,7 @@ input type:keyboard {
    xkb_layout "dk"
 }
 
-input "$TOUCHPAD" {
+input type:touchpad {
 	natural_scroll enabled
 	tap enabled
 }

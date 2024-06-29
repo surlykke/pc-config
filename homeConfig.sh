@@ -7,7 +7,7 @@ cd $(dirname $0)
 echo "Copying files under $HOME"
 
 # Set up for envsubst
-SHELL_FORMAT='$USER $TOUCHPAD $DEFAULT_MONITOR $SCREEN_LOCK_CMD'
+SHELL_FORMAT='$USER $DEFAULT_MONITOR $SCREEN_LOCK_CMD'
 
 for dir in $(find home -type d -printf "%P\n"); do 
 	mkdir -p ${HOME}/$dir
