@@ -166,7 +166,6 @@ exec notifyclient
 exec nm-applet
 exec blueman-applet
 exec google-chrome --no-startup-window
-exec xrdb -merge /home/$USER/.Xresources
 exec --no-startup-id /usr/bin/lxpolkit
 
 exec kanshi
