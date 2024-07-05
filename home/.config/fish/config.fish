@@ -37,13 +37,16 @@ if not string match -q $PATH "$HOME/.local/bin";
 end;
 set -gx TERMINAL alacritty 
 set -gx EDITOR vim
-set -gx DEFAULT_MONITOR $DEFAULT_MONITOR
 
 set -gx SDL_VIDEODRIVER wayland
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 set -gx QT_QPA_PLATFORM wayland
 set -gx XDG_CURRENT_DESKTOP sway
 set -gx XDG_SESSION_DESKTOP sway
+
+if test -e "$HOME/.config/fish/local_config.fish"; 
+	source "$HOME/.config/fish/local_config.fish"
+end
 
 if status --is-login; 
 	if not ps -ef | grep -q [s]way; 

@@ -173,7 +173,7 @@ exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP DIS
 exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-$SCREEN_LOCK_CMD
+exec startSwayIdle.sh
 
 for_window [window_role="pop-up"] floating enable
 for_window [app_id="org.speedcrunch.speedcrunch"] floating enable
