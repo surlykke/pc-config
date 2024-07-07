@@ -5,7 +5,6 @@
 
   kickstart is under the MIT licence. See the file MIT for a copy of the licence.
 ]]
-vim.cmd("colorscheme mydefault")
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 vim.g.have_nerd_font = true
@@ -69,6 +68,9 @@ require("lazy").setup({
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priorty = 1000,
+		config = function()
+			vim.cmd("colorscheme tokyonight")
+		end,
 	},
 	{
 		"lifepillar/vim-solarized8",
@@ -400,7 +402,7 @@ require("lazy").setup({
 					-- Build Step is needed for regex support in snippets.
 					-- This step is not supported in many windows environments.
 					-- Remove the below condition to re-enable on windows.
-					if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+					if vim.fn.executable("make") == 0 then
 						return
 					end
 					return "make install_jsregexp"
