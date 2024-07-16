@@ -176,16 +176,15 @@ require("lazy").setup({
 			-- Enable Telescope extensions if they are installed
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
-
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>h", builtin.help_tags, { desc = "Search help" })
-			vim.keymap.set("n", "<leader>m", builtin.keymaps, { desc = "Search keymaps" })
-			vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "Open file" })
-			vim.keymap.set("n", "<leader>T", builtin.builtin, { desc = "Search Telescope" })
-			vim.keymap.set("n", "<leader>f", builtin.live_grep, { desc = "Search" })
-			vim.keymap.set("n", "<leader>E", builtin.diagnostics, { desc = "Diagnostics" })
-			vim.keymap.set("n", "<leader>c.", builtin.resume, { desc = "Continue search" })
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
+			vim.keymap.set("n", "<leader>fm", builtin.keymaps, { desc = "Find keymaps" })
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find file" })
+			vim.keymap.set("n", "<leader>fp", builtin.builtin, { desc = "Find pickers" })
+			vim.keymap.set("n", "<leader>ft", builtin.live_grep, { desc = "Find text" })
+			vim.keymap.set("n", "<leader>fe", builtin.diagnostics, { desc = "Find errors" })
+			vim.keymap.set("n", "<leader>fc.", builtin.resume, { desc = "Find continue" })
 
 			-- Shortcut for searching your Neovim configuration files
 			vim.keymap.set("n", "<leader>sn", function()
@@ -222,13 +221,17 @@ require("lazy").setup({
 						require("telescope.builtin").lsp_type_definitions,
 						"goto definition of current symbols type"
 					)
-					map("<leader>u", require("telescope.builtin").lsp_references, "Usages")
-					map("<leader>i", require("telescope.builtin").lsp_implementations, "Implementation")
 					map("<leader>a", vim.lsp.buf.code_action, "actions")
-					map("<leader>s", require("telescope.builtin").lsp_document_symbols, "Local symbols")
-					map("<leader>S", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
 					map("<leader>rn", vim.lsp.buf.rename, "Rename")
-					map("K", vim.lsp.buf.hover, "Hover Documentation")
+					map("<leader>K", vim.lsp.buf.hover, "Hover Documentation")
+					map("<leader>fu", require("telescope.builtin").lsp_references, "Find usages")
+					map("<leader>fi", require("telescope.builtin").lsp_implementations, "Find implementation")
+					map("<leader>fs", require("telescope.builtin").lsp_document_symbols, "Find local symbols")
+					map(
+						"<leader>fS",
+						require("telescope.builtin").lsp_dynamic_workspace_symbols,
+						"Find workspace symbols"
+					)
 
 					-- Highlight references of word under cursor
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -572,6 +575,7 @@ require("lazy").setup({
 				},
 			})
 			vim.keymap.set("n", "<leader>-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+			vim.keymap.set("n", "<leader>fb", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 		end,
 	},
 }, {
