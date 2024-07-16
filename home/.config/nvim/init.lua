@@ -1,7 +1,8 @@
+---@diagnostic disable: unused-local
 --[[
   Based on the brilliant https://github.com/nvim-lua/kickstart.nvim 
   
-  Adapted for my personal taste; mostly by removing stuff I don't use, rearranging keymap.
+  Adapted for my personal taste; mostly by removing stuff I don't use, rearranging keymaps.
 
   kickstart is under the MIT licence. See the file MIT for a copy of the licence.
 ]]
@@ -28,6 +29,8 @@ vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.title = true
+
 vim.keymap.set("n", "<leader>p", function()
 	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Previous dagnostic message" })
