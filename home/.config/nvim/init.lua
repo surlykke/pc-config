@@ -31,14 +31,11 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.title = true
 
-vim.keymap.set("n", "<leader>p", function()
-	vim.diagnostic.jump({ count = -1, float = true })
-end, { desc = "Previous dagnostic message" })
-vim.keymap.set("n", "<leader>n", function()
-	vim.diagnostic.jump({ count = 1, float = true })
-end, { desc = "Next diagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Error messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Quickfix list" })
+vim.keymap.set("n", "<leader>x", ":cclose<cr>", { desc = "Close quickfix list" })
+vim.keymap.set("n", "<leader>p", ":cprev<cr>", { desc = "Quickfix previous" })
+vim.keymap.set("n", "<leader>n", ":cnext<cr>", { desc = "Quickfix next" })
 
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
@@ -85,55 +82,13 @@ require("lazy").setup({
 	},
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
-
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup({
-				signs = {
-					add = { text = "┃" },
-					change = { text = "┃" },
-					delete = { text = "_" },
-					topdelete = { text = "‾" },
-					changedelete = { text = "~" },
-					untracked = { text = "┆" },
-				},
-				on_attach = function(bufnr)
-					local gitsigns = require("gitsigns")
-					local function map(mode, l, r, opts)
-						opts = opts or {}
-						opts.buffer = bufnr
-						vim.keymap.set(mode, l, r, opts)
-					end
-
-					-- Navigation
-					map("n", "<leader>gn", function()
-						if vim.wo.diff then
-							vim.cmd.normal({ "]c", bang = true })
-						else
-							gitsigns.nav_hunk("next")
-						end
-					end)
-
-					map("n", "<leader>gp", function()
-						if vim.wo.diff then
-							vim.cmd.normal({ "[c", bang = true })
-						else
-							gitsigns.nav_hunk("prev")
-						end
-					end)
-
-					map("n", "<leader>gd", gitsigns.preview_hunk)
-					map("n", "<leader>gD", function()
-						gitsigns.diffthis("~")
-					end)
-					map("n", "<leader>gb", gitsigns.toggle_current_line_blame)
-					map("n", "<leader>gB", function()
-						gitsigns.blame_line({ full = true })
-					end)
-				end,
-			})
-		end,
+	{
+		"https://tpope.io/vim/fugitive.git",
+		keys = {
+			{ "<leader>gh", ":Gclog<cr>", desc = "Show git history", mode = "n" },
+			{ "<leader>gh", ":Gclog<cr>", desc = "Show git history", mode = "v" },
+			{ "<leader>gb", ":Git blame<cr>", desc = "Git blame", mode = "n" },
+		},
 	},
 	{ -- Useful plugin to show you pending keybinds.
 		"folke/which-key.nvim",
@@ -181,18 +136,18 @@ require("lazy").setup({
 			pcall(require("telescope").load_extension, "ui-select")
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help" })
-			vim.keymap.set("n", "<leader>fm", builtin.keymaps, { desc = "Find keymaps" })
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find file" })
-			vim.keymap.set("n", "<leader>fp", builtin.builtin, { desc = "Find pickers" })
-			vim.keymap.set("n", "<leader>ft", builtin.live_grep, { desc = "Find text" })
-			vim.keymap.set("n", "<leader>fe", builtin.diagnostics, { desc = "Find errors" })
-			vim.keymap.set("n", "<leader>fc.", builtin.resume, { desc = "Find continue" })
+			vim.keymap.set("n", "fh", builtin.help_tags, { desc = "Find help" })
+			vim.keymap.set("n", "fm", builtin.keymaps, { desc = "Find keymaps" })
+			vim.keymap.set("n", "ff", builtin.find_files, { desc = "Find file" })
+			vim.keymap.set("n", "fp", builtin.builtin, { desc = "Find picker" })
+			vim.keymap.set("n", "ft", builtin.live_grep, { desc = "Find text" })
+			vim.keymap.set("n", "fe", builtin.diagnostics, { desc = "Find errors" })
+			vim.keymap.set("n", "fr", builtin.resume, { desc = "Find resume" })
 
 			-- Shortcut for searching your Neovim configuration files
-			vim.keymap.set("n", "<leader>sn", function()
+			vim.keymap.set("n", "fc", function()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "[S]earch [N]eovim files" })
+			end, { desc = "Find in config files" })
 		end,
 	},
 
@@ -213,28 +168,32 @@ require("lazy").setup({
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+
 				callback = function(event)
+					local organizeImports = function()
+						vim.lsp.buf.code_action({
+							context = {
+								only = { "source.organizeImports" },
+								diagnostics = {},
+							},
+							apply = true,
+						})
+					end
+
 					local map = function(keys, func, desc)
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
 					end
 
-					map("<leader>d", require("telescope.builtin").lsp_definitions, "Goto definition of current symbol")
-					map(
-						"<leader>D",
-						require("telescope.builtin").lsp_type_definitions,
-						"goto definition of current symbols type"
-					)
-					map("<leader>a", vim.lsp.buf.code_action, "actions")
+					map("fd", require("telescope.builtin").lsp_definitions, "Find symbol definition")
+					map("fD", require("telescope.builtin").lsp_type_definitions, "find symbol type definition")
+					map("fa", vim.lsp.buf.code_action, "actions")
+					map("fu", require("telescope.builtin").lsp_references, "Find usages")
+					map("fi", require("telescope.builtin").lsp_implementations, "Find implementation")
+					map("fs", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Find workspace symbols")
+					map("fS", require("telescope.builtin").lsp_document_symbols, "Find local symbols")
 					map("<leader>rn", vim.lsp.buf.rename, "Rename")
+					map("<leader>o", organizeImports, "Organize imports")
 					map("<leader>K", vim.lsp.buf.hover, "Hover Documentation")
-					map("<leader>fu", require("telescope.builtin").lsp_references, "Find usages")
-					map("<leader>fi", require("telescope.builtin").lsp_implementations, "Find implementation")
-					map("<leader>fs", require("telescope.builtin").lsp_document_symbols, "Find local symbols")
-					map(
-						"<leader>fS",
-						require("telescope.builtin").lsp_dynamic_workspace_symbols,
-						"Find workspace symbols"
-					)
 
 					-- Highlight references of word under cursor
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -266,24 +225,13 @@ require("lazy").setup({
 					vim.cmd("highlight LspReferenceText gui=underline")
 
 					if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-						map("<leader>H", function()
+						map("<leader>h", function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 						end, "Toggle inlay hints")
 					end
 
 					-- Organize imports on save
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						pattern = "*.go",
-						callback = function()
-							vim.lsp.buf.code_action({
-								context = {
-									only = { "source.organizeImports" },
-									diagnostics = {},
-								},
-								apply = true,
-							})
-						end,
-					})
+					vim.api.nvim_create_autocmd("BufWritePre", { pattern = "*.go", callback = organizeImports })
 				end,
 			})
 
@@ -365,7 +313,7 @@ require("lazy").setup({
 		lazy = false,
 		keys = {
 			{
-				"<leader>l",
+				"<leader>f",
 				function()
 					require("conform").format({ async = true, lsp_fallback = true })
 				end,
@@ -569,6 +517,7 @@ require("lazy").setup({
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
+			vim.keymap.set("n", "fF", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 			require("oil").setup({
 				columns = {
 					"icon",
@@ -577,8 +526,6 @@ require("lazy").setup({
 					"mtime",
 				},
 			})
-			vim.keymap.set("n", "<leader>-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-			vim.keymap.set("n", "<leader>fb", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 		end,
 	},
 }, {
