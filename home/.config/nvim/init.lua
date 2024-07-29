@@ -32,7 +32,7 @@ vim.opt.shiftwidth = 4
 vim.opt.title = true
 
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Error messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Quickfix list" })
+vim.keymap.set("n", "<leader>q", ":copen<cr>", { desc = "Open quickfix list" })
 vim.keymap.set("n", "<leader>x", ":cclose<cr>", { desc = "Close quickfix list" })
 vim.keymap.set("n", "<leader>p", ":cprev<cr>", { desc = "Quickfix previous" })
 vim.keymap.set("n", "<leader>n", ":cnext<cr>", { desc = "Quickfix next" })
@@ -123,6 +123,12 @@ require("lazy").setup({
 						-- other layout configuration here
 					},
 					-- other defaults configuration here
+					mappings = {
+						i = {
+							["<C-l>"] = require("telescope.actions").send_to_qflist
+								+ require("telescope.actions").open_qflist,
+						},
+					},
 				},
 				extensions = {
 					["ui-select"] = {
