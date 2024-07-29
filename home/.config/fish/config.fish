@@ -35,7 +35,6 @@ set -gx LANG da_DK.UTF-8
 if not string match -q $PATH "$HOME/.local/bin"; 
 	set -gx PATH $HOME/.local/bin $PATH
 end;
-set -gx TERMINAL alacritty 
 set -gx EDITOR vim
 
 set -gx SDL_VIDEODRIVER wayland

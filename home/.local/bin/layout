@@ -26,5 +26,3 @@ case ${#outputs[@]} in
 esac
 
 
-#!/usr/bin/env bash
-

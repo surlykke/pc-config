@@ -4,7 +4,7 @@
 
 echo "Installing apt packages"
 APT_PACKAGES="\
- apt-file autorandr blueman curl feh fish flameshot git golang gopls htop i3 lua5.4 luarocks\
+ apt-file autorandr blueman curl feh fish foot foot-terminfo foot-themes flameshot git golang gopls htop i3 lua5.4 luarocks\
  openfortivpn openjdk-17-jdk openjdk-17-source openssh-server pasystray pavucontrol playerctl ripgrep\
  rxvt-unicode sway swaylock swayidle unclutter xclip xdg-desktop-portal xdg-desktop-portal-wlr xscreensaver\
  lxpolkit lxappearance \

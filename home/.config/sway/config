@@ -180,7 +180,6 @@ for_window [app_id="org.speedcrunch.speedcrunch"] floating enable
 for_window [title="PySol - Klondike"] floating enable
 for_window [title="^Microsoft Teams"] floating disable
 for_window [class="java-util-concurrent-ForkJoinWorkerThread"] floating enable
-for_window [app_id="Alacritty"] border pixel 1
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 no_focus [class="Refude notifier"]
 for_window [class="Refude notifier"] border pixel 1 
