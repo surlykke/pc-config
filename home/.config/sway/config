@@ -152,6 +152,7 @@ bar {
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
+	tray_output none
 }
 
 workspace_layout tabbed
@@ -179,6 +180,7 @@ for_window [window_role="pop-up"] floating enable
 for_window [app_id="org.speedcrunch.speedcrunch"] floating enable
 for_window [title="PySol - Klondike"] floating enable
 for_window [title="^Microsoft Teams"] floating disable
+for_window [app_id="^nm-"] floating enable
 for_window [class="java-util-concurrent-ForkJoinWorkerThread"] floating enable
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 no_focus [class="Refude notifier"]
