@@ -32,6 +32,9 @@ set __fish_git_prompt_char_upstream_behind '-'
 # profile
 
 set -gx LANG da_DK.UTF-8
+set -gx LC_ALL da_DK.UTF-8
+xdg-user-dirs-update
+
 if not string match -q $PATH "$HOME/.local/bin"; 
 	set -gx PATH $HOME/.local/bin $PATH
 end;
