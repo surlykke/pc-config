@@ -13,3 +13,4 @@ nohup  microsoft-edge --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdj
 layout
 sleep 1
 swaymsg '[instance="slack"] resize set width 1000px'
+nmcli con up 'lessor-vpn'
