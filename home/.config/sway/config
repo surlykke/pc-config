@@ -185,6 +185,7 @@ for_window [class="java-util-concurrent-ForkJoinWorkerThread"] floating enable
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 no_focus [class="Refude notifier"]
 for_window [title="Refude desktop"] floating enable, move absolute position center
+for_window [title="Connect to VPN"] focus, move absolute position center
 for_window [class="Refude notifier"] border pixel 1 
 for_window [class="Refude notifier"] floating enable 
 for_window [class="Refude notifier"] move position -1000 -1000
