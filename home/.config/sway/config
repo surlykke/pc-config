@@ -152,7 +152,7 @@ bar {
         background #323232
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
-	tray_output none
+	#tray_output none
 }
 
 workspace_layout tabbed
