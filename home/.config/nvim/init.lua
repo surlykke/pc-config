@@ -198,6 +198,7 @@ require("lazy").setup({
 					map("fs", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Find workspace symbols")
 					map("fS", require("telescope.builtin").lsp_document_symbols, "Find local symbols")
 					map("<leader>rn", vim.lsp.buf.rename, "Rename")
+					map("<leader>a", vim.lsp.buf.code_action, "Code action")
 					map("<leader>o", organizeImports, "Organize imports")
 					map("<leader>K", vim.lsp.buf.hover, "Hover Documentation")
 
