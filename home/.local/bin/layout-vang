@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# swaymsg -t get_outputs | jq '.[] | select(.make|test("Samsung")) | .name' 
+swaymsg output eDP-1 position    0 1080
+swaymsg output  DP-7 position 1920    0
+
+WindowArranger -wait 30 <<-EOC
+	eDP-1: T['instance=google-chrome']
+	DP-7: H[V[H['title=Work' 'title=Log']  T['instance="jetbrains-idea"']] 
+			V['instance=slack' 'title=".*Microsoft Teams.*"']]
+EOC
+swaymsg '[instance=jetbrains-idea] resize set width 2800 px'
+swaymsg '[instance=jetbrains-idea] resize set height 1400 px'
+
+

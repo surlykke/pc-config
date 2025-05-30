@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+WindowArranger -wait 30 <<-EOC
+	eDP-1: V['title=Work' 'title=Log']
+	DP-6: T['instance="jetbrains-idea"']
+	DP-7: H[T['instance="google-chrome"'] V['instance=slack' 'title=".*Microsoft Teams.*"']]
+EOC
+swaymsg '[instance=slack] resize set width 900px'
+
+

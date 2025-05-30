@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Work Hillerød
+Comment=Setup for work, Hillerød
+Name[da]=Arbejde Hillerød
+Comment[da]=Arbejds setup, Hillerød
+Exec=arbejde hillerød
