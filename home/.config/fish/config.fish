@@ -50,8 +50,3 @@ if test -e "$HOME/.config/fish/local_config.fish";
 	source "$HOME/.config/fish/local_config.fish"
 end
 
-if status --is-login; 
-	if not ps -ef | grep -q [s]way; 
-		exec sway ; 
-	end
-end
