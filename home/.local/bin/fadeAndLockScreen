@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+chayang && swaylock -c 000000

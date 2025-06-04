@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+nohup swaylock -c 000000 >/dev/null 2>/dev/null &
