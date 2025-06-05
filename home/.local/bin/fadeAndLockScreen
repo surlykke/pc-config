@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-chayang && swaylock -c 000000
+chayang && swaylock -i $HOME/wallpapers/låseskærm.svg
