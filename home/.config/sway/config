@@ -163,7 +163,6 @@ bindsym $mod+greater move container to output right
 bindsym $mod+less move container to output left
 
 exec runRefude.sh
-exec notifyclient
 exec nm-applet
 exec blueman-applet
 exec google-chrome --no-startup-window
